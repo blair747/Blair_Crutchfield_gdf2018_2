@@ -9,11 +9,12 @@ public class CompletePlayerController : MonoBehaviour
 
     public float speed;             //Floating point variable to store the player's movement speed.
     public Text MeteorcountText;          //Store a reference to the UI Text component which will display the number of pickups collected.
-    public Text StarText;   //Star Points' message.
-
+    public Text StarText; //Star Points' message.
+    public Text TotalscoreText;
     private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
     private int Meteorcount;              //Integer to store the number of pickups collected so far.
     private int Starcount;
+    private int Totalscore;
     // Use this for initialization
     void Start()
     {
@@ -25,6 +26,9 @@ public class CompletePlayerController : MonoBehaviour
 
         //Initialize count to zero.
         Starcount = 0;
+
+        //Start total score to 0
+        Totalscore = 0;
 
        
        
@@ -61,6 +65,10 @@ public class CompletePlayerController : MonoBehaviour
             //Add one to the current value of our count variable.
             Meteorcount = Meteorcount + 1;
 
+            Totalscore = Totalscore + 1;
+
+            SetCountText();
+
             //Update the currently displayed count by calling the SetCountText function.
             SetCountText();
 
@@ -75,7 +83,11 @@ public class CompletePlayerController : MonoBehaviour
             //Add more points to count
             Starcount = Starcount + 1;
 
+            Totalscore = Totalscore + 2;
+
             //Update again for new object
+            SetCountText();
+
             SetCountText();
 
 
@@ -91,6 +103,8 @@ public class CompletePlayerController : MonoBehaviour
 
         //Set Text property for the other one
         StarText.text = "StarCount: " + Starcount.ToString();
+
+        TotalscoreText.text = "Total Score: " + Totalscore.ToString();
     }
 
 
